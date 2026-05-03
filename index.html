@@ -1,37 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>🎈 Guess The Number!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-    <title>Guess</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div id="p1">
-        <div id="p1e1">
-        <h1 class="heading"> Guess The Number </h1>
-    </div>
 
-        <div id="p1e2">
-            <a class=""role="button" href="./game.html">
-           <button id="p1-btn">
-               Start The Game
-            </button> 
-        </a>
+    <!-- BACKGROUND -->
+    <div class="bg">
+        <div class="sun"></div>
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="cloud c3"></div>
+        <div class="floaties">
+            <span class="floatie" style="top:62%;left:4%;animation-delay:0s">🌻</span>
+            <span class="floatie" style="top:68%;left:88%;animation-delay:1s">🌼</span>
+            <span class="floatie" style="top:58%;left:50%;animation-delay:0.5s">🦋</span>
+            <span class="floatie" style="top:72%;left:22%;animation-delay:1.5s">🐝</span>
+            <span class="floatie" style="top:60%;left:75%;animation-delay:0.8s">🌈</span>
         </div>
-               
-<div>
-</div>
+        <div class="hill hill2"></div>
+        <div class="hill hill1"></div>
+        <span class="flower" style="left:2%;bottom:2px;animation-delay:0s">🌺</span>
+        <span class="flower" style="left:10%;bottom:0px;animation-delay:0.3s">🌸</span>
+        <span class="flower" style="right:4%;bottom:2px;animation-delay:0.6s">🌻</span>
+        <span class="flower" style="right:12%;bottom:0px;animation-delay:0.9s">🌼</span>
+        <span class="flower" style="left:50%;bottom:1px;animation-delay:0.4s">🌷</span>
+    </div>
+
+    <!-- CONFETTI -->
+    <div class="confetti-wrap" id="confetti"></div>
+
+    <!-- GAME WRAPPER -->
+    <div class="wrapper">
+
+        <!-- ===== START SCREEN ===== -->
+        <div class="screen active" id="screen-start">
+            <div class="card">
+                <div class="mascot">🐨</div>
+                <div class="game-title">Guess the Number!</div>
+                <div class="game-subtitle">I'm thinking of a number.<br>Can you guess it? 🤔</div>
+                <div class="rules-row">
+                    <span class="rule-badge">🔢 1 to 100</span>
+                    <span class="rule-badge">❤️ 6 chances</span>
+                </div>
+                <button class="start-btn" onclick="startGame()">🚀 Let's Play!</button>
+            </div>
+        </div>
+
+        <!-- ===== GAME SCREEN ===== -->
+        <div class="screen" id="screen-game">
+            <div class="card">
+                <div class="game-title-sm">🎯 What's my number?</div>
+
+                <!-- number display -->
+                <div class="num-box" id="num-box">?</div>
+
+                <!-- dots -->
+                <div>
+                    <div class="dots-row" id="dots-row"></div>
+                    <div class="attempts-label" id="attempts-label" style="text-align:center;margin-top:4px;"></div>
+                </div>
+
+                <!-- range bar -->
+                <div class="range-wrap">
+                    <div class="range-top">
+                        <span class="range-num" id="lo-lbl">1</span>
+                        <span class="range-lbl">Your range</span>
+                        <span class="range-num" id="hi-lbl">100</span>
+                    </div>
+                    <div class="range-track">
+                        <div class="range-fill" id="range-fill" style="left:0%;width:100%;"></div>
+                    </div>
+                </div>
+
+                <!-- input -->
+                <div class="input-row">
+                    <input class="num-input" type="number" id="guess-input" min="1" max="100" placeholder="1 – 100" />
+                    <button class="check-btn" id="check-btn" onclick="makeGuess()">Check ✓</button>
+                </div>
+
+                <!-- feedback -->
+                <div class="feedback" id="feedback"></div>
+
+                <!-- hint/sarcasm -->
+                <div class="hint-box" id="hint-box">💡 Think of any number between 1 and 100!</div>
+            </div>
+        </div>
+
+        <!-- ===== WIN SCREEN ===== -->
+        <div class="screen" id="screen-win">
+            <div class="card">
+                <div class="end-emoji">🏆</div>
+                <div class="end-title win-c">YOU WIN!</div>
+                <div class="end-msg" id="win-msg"></div>
+                <div class="end-sarcasm" id="win-sarcasm"></div>
+                <button class="replay-btn" onclick="resetGame()">🎮 Play Again!</button>
+            </div>
+        </div>
+
+        <!-- ===== LOSE SCREEN ===== -->
+        <div class="screen" id="screen-lose">
+            <div class="card">
+                <div class="end-emoji">😢</div>
+                <div class="end-title lose-c">Oh no!</div>
+                <div class="end-msg" id="lose-msg"></div>
+                <div class="end-sarcasm" id="lose-sarcasm"></div>
+                <button class="replay-btn" onclick="resetGame()">🔄 Try Again!</button>
+            </div>
+        </div>
 
     </div>
-    
 
-
-
-
+    <script src="script.js"></script>
 </body>
+
 </html>
