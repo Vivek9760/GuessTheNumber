@@ -34,8 +34,10 @@ A fun, colorful number-guessing game designed for kids! Built with pure HTML, CS
 ## 📁 File Structure
 
 ```
-guess-the-number.html   ← The entire game (HTML + CSS + JS in one file)
-README.md               ← This file
+index.html  ← The game HTML
+style.css   ← The game CSS
+script.js   ← The game JS
+README.md   ← This file
 ```
 
 That's it. Just one HTML file!
