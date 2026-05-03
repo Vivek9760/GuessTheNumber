@@ -1,6 +1,6 @@
 # 🎈 Guess The Number — Kids Edition
 
-🌐 **Live Demo:** [https://vivek9760.github.io/GuessTheNumber/game.html](https://vivek9760.github.io/GuessTheNumber/game.html)
+🌐 **Live Demo:** [https://vivek9760.github.io/GuessTheNumber](https://vivek9760.github.io/GuessTheNumber)
 
 A fun, colorful number-guessing game designed for kids! Built with pure HTML, CSS, and JavaScript — zero dependencies, one file, works everywhere.
 
